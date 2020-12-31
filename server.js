@@ -2,6 +2,10 @@ import express from 'express';
 import fetch from 'node-fetch';
 const app = express();
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
 app.post('/oyamli/:key', (req, res) => {
   console.log(req.params);
   var result = [];
@@ -45,7 +49,7 @@ app.post('/oyamli/:key', (req, res) => {
     });
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`)
