@@ -1,0 +1,29 @@
+{
+  "name": "oyamli-api",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "server.js",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-node": "0.0.1-security",
+    "babel-preset-es2015": "^6.24.1",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariachakhtoura/oyamli-api.git"
+  },
+  "author": "Maria Chakhtoura <mariajchakhtoura@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mariachakhtoura/oyamli-api/issues"
+  },
+  "homepage": "https://github.com/mariachakhtoura/oyamli-api#readme"
+}
