@@ -2,6 +2,19 @@ import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
 
+const STATIC_WORDS = {
+  '0': '٠',
+  '1': '١',
+  '2': '٢',
+  '3': '٣',
+  '4': '٤',
+  '5': '٥',
+  '6': '٦',
+  '7': '٧',
+  '8': '٨',
+  '9': '٩',
+}
+
 const app = express();
 app.use(cors());
 
@@ -10,9 +23,27 @@ app.get('/', (req, res) => {
 })
 
 app.post('/oyamli/:key', (req, res) => {
-  console.log(req.params);
   var result = [];
   var success = false;
+  if(Object.keys(STATIC_WORDS).includes(req.params.key[0])){
+    if(req.params.key.length > 1){
+      console.log(req.params.key);
+      const numb = req.params.key;
+      let resNumb = '';
+      numb.split('').forEach(n => {
+        resNumb += STATIC_WORDS[n];
+      });
+      result.push(req.params.key);
+      result.push(resNumb);
+    } else {
+      result.push(req.params.key);
+      result.push(STATIC_WORDS[req.params.key]);
+    }
+    res.status(200).send({
+      success,
+      result,
+    });
+  } else {
   fetch(
     `https://api.yamli.com/transliterate.ashx?word=${req.params.key}&tool=api&account_id=000006&prot=https%3A&hostname=www.yamli.com&path=%2Farabic-keyboard%2F&build=5515&sxhr_id=15`,
     {
@@ -50,6 +81,7 @@ app.post('/oyamli/:key', (req, res) => {
         result,
       })
     });
+  }
 });
 
 const PORT = process.env.PORT || 5000;
